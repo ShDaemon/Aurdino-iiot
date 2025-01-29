@@ -1,18 +1,11 @@
-/*
- * Simple example for how to use multiple SinricPro Switch device:
- * - setup 4 switch devices
- * - handle request using multiple callbacks
- * 
- * If you encounter any issues:
- * - check the readme.md at https://github.com/sinricpro/esp8266-esp32-sdk/blob/master/README.md
- * - ensure all dependent libraries are installed
- *   - see https://github.com/sinricpro/esp8266-esp32-sdk/blob/master/README.md#arduinoide
- *   - see https://github.com/sinricpro/esp8266-esp32-sdk/blob/master/README.md#dependencies
- * - open serial monitor and check whats happening
- * - check full user documentation at https://sinricpro.github.io/esp8266-esp32-sdk
- * - visit https://github.com/sinricpro/esp8266-esp32-sdk/issues and check for existing issues or open a new one
- */
-
+/*  
+ * Simple example for how to use multiple SinricPro Switch devices:  
+ * For integrating your devices with Google Home:  
+ * - Set up your SinricPro account at https://sinric.pro  
+ * - Link your SinricPro account with Google Home through the Google Assistant app:  
+ *   - Add the "SinricPro" service and follow the prompts to connect your devices.  
+ * - Once linked, you can control your switches using voice commands via Google Assistant.  
+ */  
 
 #ifdef ENABLE_DEBUG
    #define DEBUG_ESP_PORT Serial

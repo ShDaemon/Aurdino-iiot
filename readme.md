@@ -1,5 +1,7 @@
 # IIoT Arduino Code for ESP32
 
+# Tools Used
+## Sinric Pro, Google Home, TinkerCAD
 ## Overview
 This repository contains C++ code designed for Internet of Things (IoT) applications using the ESP32 microcontroller. The code can be executed in the Arduino IDE after setting up the necessary environment.
 

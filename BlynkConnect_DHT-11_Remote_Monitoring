@@ -1,0 +1,68 @@
+
+// Enable Serial prints for debugging
+#define BLYNK_PRINT Serial
+
+#define BLYNK_TEMPLATE_ID "TMPL3RwO8CExt"
+#define BLYNK_TEMPLATE_NAME "Temperature Monitoring System"
+#define BLYNK_AUTH_TOKEN "uc5x2C0IL**************" // change here
+
+#include <WiFi.h>
+#include <BlynkSimpleEsp32.h>
+#include <DHT.h>
+
+// DHT11 sensor configuration
+#define DHTPIN 12        // Connect DHT11 data pin to ESP32 pin 12 (adjust as per your wiring)
+#define DHTTYPE DHT11    // DHT 11 sensor type
+
+// WiFi credentials
+char ssid[] = "Merlin";
+char pass[] = "***********";
+
+// Initialize DHT sensor
+DHT dht(DHTPIN, DHTTYPE);
+
+// Blynk timer to schedule sensor reads
+BlynkTimer timer;
+
+// Function to read sensor data and send to Blynk Cloud
+void sendSensorData() {
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+  
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+  
+  // Send sensor values to the virtual pins (match these with your Blynk Console settings)
+  Blynk.virtualWrite(V1, humidity);
+  Blynk.virtualWrite(V0, temperature);
+  
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.print(" %, Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" *C");
+}
+
+// Callback function triggered when Blynk connects to WiFi and Blynk Cloud
+BLYNK_CONNECTED() {
+  Serial.println("Connected to WiFi and Blynk Cloud!");
+}
+
+void setup() {
+  Serial.begin(115200);
+  dht.begin();
+  
+  // Connect to WiFi and Blynk Cloud using your auth token and WiFi credentials
+  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+  
+  // Schedule sensor data transmission every 5 seconds
+  timer.setInterval(5000L, sendSensorData);
+}
+
+void loop() {
+  Blynk.run();
+  timer.run();
+}
+

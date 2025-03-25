@@ -5,13 +5,13 @@
 DHT dht(32, DHT11);
 
 WiFiClient client;
-long myChannelNumber =    2891701;           //Enter channel number
-const char myWriteAPIKey[] = "XZ80DGYQHTBZEMXU";    //Enter API Key
+long myChannelNumber =    2891***;           //Enter channel number
+const char myWriteAPIKey[] = "XZ80DGYQHT******";    //Enter API Key
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  WiFi.begin("Merlin", "244466666");  // “Wifi name”, “Password” 
+  WiFi.begin("Merlin", "2444*****");  // “Wifi name”, “Password” 
   while(WiFi.status() != WL_CONNECTED)
   {
     delay(200);
